@@ -12,6 +12,8 @@ require_once __DIR__ . '/../services/EventService.php';
 * )
 */
 Flight::route('GET /events', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $service = new EventService();
     Flight::json($service->getAllEvents());
 });
@@ -34,6 +36,8 @@ Flight::route('GET /events', function() {
  * )
  */
 Flight::route('GET /events/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $service = new EventService();
     Flight::json($service->getEventById($id));
 });
@@ -63,6 +67,8 @@ Flight::route('GET /events/@id', function($id) {
  * )
  */
 Flight::route('POST /events', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $data = Flight::request()->data->getData();
     $service = new EventService();
     Flight::json($service->createEvent($data));
@@ -99,6 +105,8 @@ Flight::route('POST /events', function() {
  * )
  */
 Flight::route('PUT /events/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $data = Flight::request()->data->getData();
     $service = new EventService();
     Flight::json($service->updateEvent($id, $data));
@@ -122,6 +130,8 @@ Flight::route('PUT /events/@id', function ($id) {
  * )
  */
 Flight::route('DELETE /events/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $service = new EventService();
     Flight::json($service->deleteEvent($id));
 });

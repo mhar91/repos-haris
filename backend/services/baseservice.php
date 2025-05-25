@@ -8,6 +8,9 @@ class BaseService {
     public function __construct($dao) {
         $this->dao = $dao;
     }
+    public function add($entity) {
+        return $this->dao->add($entity);
+    }
     public function getAll() {
         return $this->dao->getAll();
     }
