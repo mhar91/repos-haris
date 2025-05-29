@@ -41,6 +41,10 @@
             button:hover {
                 background: #0056b3;
             }
+            #error {
+            color: red;
+            display: none;
+    }
         </style>
     </head>
     <body>
@@ -52,14 +56,18 @@
                 <button type="submit">Login</button>
             </form>
             <p id="error" style="color: red; display: none;">Invalid credentials</p>
-        </div>
+        </div>  
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="js/constants.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="services/user-service.js"></script>
         <script>
-            document.getElementById("loginForm").addEventListener("submit", function(event) {
-                event.preventDefault();
-                var username = document.getElementById("username").value;
-                var password = document.getElementById("password").value;
-                window.location.href = "index.html";
-            });
-        </script>
+          $(document).ready(function () {
+          UserService.init();
+         });
+  </script>
+</body>
+</html>
     </body>
 </html>

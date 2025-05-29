@@ -12,6 +12,8 @@ require_once __DIR__ . '/../services/venueservice.php';
  * )
  */
 Flight::route('GET /venues', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $service = new VenueService();
     Flight::json($service->getAllVenues());
 });
@@ -34,6 +36,8 @@ Flight::route('GET /venues', function() {
  * )
  */
 Flight::route('GET /venues/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $service = new VenueService();
     Flight::json($service->getVenueById($id));
 });
@@ -59,6 +63,8 @@ Flight::route('GET /venues/@id', function($id) {
  * )
  */
 Flight::route('POST /venues', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $data = Flight::request()->data->getData();
     $service = new VenueService();
     Flight::json($service->createVenue($data));
@@ -90,6 +96,8 @@ Flight::route('POST /venues', function() {
  * )
  */
 Flight::route('PUT /venues/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $data = Flight::request()->data->getData();
     $service = new VenueService();
     Flight::json($service->updateVenue($id, $data));
@@ -113,6 +121,8 @@ Flight::route('PUT /venues/@id', function($id) {
  * )
  */
 Flight::route('DELETE /venues/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $service = new VenueService();
     Flight::json($service->deleteVenue($id));
 });

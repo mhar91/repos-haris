@@ -11,6 +11,8 @@ require_once __DIR__ . '/../services/RegistrationService.php';/**
 * )
 */
 Flight::route('GET /registrations', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $service = new RegistrationService();
     Flight::json($service->getAllRegistrations());
 });
@@ -33,6 +35,8 @@ Flight::route('GET /registrations', function() {
  * )
  */
 Flight::route('GET /registrations/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $service = new RegistrationService();
     Flight::json($service->getRegistrationById($id));
 });
@@ -56,6 +60,8 @@ Flight::route('GET /registrations/@id', function($id) {
  * )
  */
 Flight::route('POST /registrations', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $data = Flight::request()->data->getData();
     $service = new RegistrationService();
     Flight::json($service->createRegistration($data));
@@ -86,6 +92,8 @@ Flight::route('POST /registrations', function() {
  * )
  */
 Flight::route('PUT /registrations/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $data = Flight::request()->data->getData();
     $service = new RegistrationService();
     Flight::json($service->updateRegistration($id, $data));
@@ -109,6 +117,8 @@ Flight::route('PUT /registrations/@id', function($id) {
  * )
  */
 Flight::route('DELETE /registrations/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::USER);
+    $location = Flight::request()->query['location'] ?? null;
     $service = new RegistrationService();
     Flight::json($service->deleteRegistration($id));
 });
