@@ -23,5 +23,8 @@ class UserService extends BaseService {
     public function deleteUser($id) {
         return $this->userDAO->delete($id);
     }
+    public function getUserByEmail($email) {
+        return $this->userDAO->getByEmail($email);
+    }
 }
 ?>

@@ -63,8 +63,6 @@ Flight::route('GET /users/@id', function($id) {
  * )
  */
 Flight::route('POST /users', function() {
-    Flight::auth_middleware()->authorizeRole(Roles::USER);
-    $location = Flight::request()->query['location'] ?? null;
     $data = Flight::request()->data->getData();
     $service = new UserService();
     Flight::json($service->createUser($data));

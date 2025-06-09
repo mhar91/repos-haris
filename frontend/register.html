@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            font-family: Trebuchet MS, sans-serif;
+        }
+        .register-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        #error {
+            color: red;
+            display: none;
+        }
+        .login-link {
+            margin-top: 15px;
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+        <form id="registerForm" class="p-3 border rounded" style="max-width:400px; margin: 50px auto;">
+            <div class="mb-3">
+                <input name="name" type="text" class="form-control" placeholder="Username" required />
+            </div>
+            <div class="mb-3">
+                <input name="email" type="email" class="form-control" placeholder="Email" required />
+            </div>
+            <div class="mb-3">
+                <input name="password" type="password" class="form-control" placeholder="Password" required />
+            </div>
+            <div class="mb-3">
+                <input name="confirm_password" type="password" class="form-control" placeholder="Confirm Password" required />
+            </div>
+            <button type="submit" class="btn btn-success w-100">Register</button>
+        </form>
+        <a href="login.html" class="login-link">Already have an account? Login!</a>
+        <p id="error"></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#registerForm').validate({
+                rules: {
+                    name: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: "required",
+                    confirm_password: {
+                        required: true,
+                        equalTo: '[name="password"]'
+                    }
+                },
+                messages: {
+                    name: "Please enter your username",
+                    email: "Please enter a valid email address",
+                    password: "Please enter a password",
+                    confirm_password: "Passwords do not match"
+                },
+                submitHandler: function(form) {
+                    alert("Registration done!");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
